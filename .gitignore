@@ -1,2 +1,8 @@
-/premierprojet40/nbproject/private/
-/premierprojet40/var/
+/premierprojet40/nbproject
+/premierprojet40/.env.local
+/premierprojet40/.env.local.php
+/premierprojet40/.env.*.local
+/premierprojet40/config
+/premierprojet40/public/bundles
+/premierprojet40/var
+/premierprojet40/vendor/*
