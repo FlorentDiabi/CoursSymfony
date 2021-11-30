@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,10 +41,19 @@ class PrincipalController extends AbstractController
         else {
             $sexe = "de sexe inconnu !";
         }
-        
         return $this->render('principal/message.html.twig', array(
             "departement" => $departement,
             "sexe" => $sexe,
         ));
+    }
+    
+    /**
+     * @Route("/employes", name="employes")
+     * @param ManagerRegistry $doctrine
+     */
+    public function afficheEmployes(ManagerRegistry $doctrine) : Response {
+        $employes = $doctrine->getRepository(Employe::class)->findAll();
+        $titre = "Liste des employés";
+        return $this->render('principal/employes.html.twig', compact('titre', 'employes'));
     }
 }
