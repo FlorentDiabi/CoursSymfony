@@ -1,8 +1,7 @@
 {% extends "base.html.twig" %}
-{% block title %}
-    {{ titre }}
-{% endblock %}
+
 {% block body %}
+    <p> Nom du lieu : {{ lieu.nom }}</p>
     <table class="table table-responsive">
         <thead>
             <tr>
@@ -12,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for employe in employes %}
+            {% for employe in lieu.employes %}
                 <tr>
                     <td>{{ employe.id }}</td>
                     <td>{{ employe.nom }}</td>

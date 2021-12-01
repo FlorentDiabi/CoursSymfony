@@ -5,6 +5,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Employe;
+use App\Entity\Lieu;
 
 class PrincipalController extends AbstractController
 {
@@ -55,5 +57,34 @@ class PrincipalController extends AbstractController
         $employes = $doctrine->getRepository(Employe::class)->findAll();
         $titre = "Liste des employés";
         return $this->render('principal/employes.html.twig', compact('titre', 'employes'));
+    }
+    
+    /**
+     * @Route("/employe/{id}", name="unemploye", requirements={"id":"\d+"})
+     * @param ManagerRegistry $doctrine
+     */
+    public function afficheUnEmploye(ManagerRegistry $doctrine, int $id) : Response {
+        $employe = $doctrine->getRepository(Employe::class)->find($id);
+        $titre = "Employé n° " . $id;
+        return $this->render('principal/unemploye.html.twig', compact('titre', 'employe'));
+    }
+    
+    /**
+     * @Route("/employetout/{id}", name="employetout", requirements={"id":"\d+"})
+     * @param ManagerRegistry $doctrine
+     */
+    public function afficherUnEmployeTout(ManagerRegistry $doctrine, int $id) {
+        $employe = $doctrine->getRepository(Employe::class)->find($id);
+        $titre = "Employé n° " . $id;
+        return $this->render('principal/unemployetout.html.twig', compact('titre', 'employe'));
+    }
+    
+    /**
+     * @Route("/lieu/{id}", name="lieu", requirements={"id":"\d+"})
+     * @param ManagerRegistry $doctrine
+     */
+    public function afficherUnLieuTout(ManagerRegistry $doctrine, int $id) {
+        $lieu = $doctrine->getRepository(Lieu::class)->find($id);
+        return $this->render('principal/unlieutout.html.twig', compact('lieu'));
     }
 }

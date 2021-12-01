@@ -27,6 +27,11 @@ class Employe
      */
     private $salaire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="employes")
+     */
+    private $lieu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Employe
     public function setSalaire(string $salaire): self
     {
         $this->salaire = $salaire;
+
+        return $this;
+    }
+
+    public function getLieu(): ?Lieu
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?Lieu $lieu): self
+    {
+        $this->lieu = $lieu;
 
         return $this;
     }

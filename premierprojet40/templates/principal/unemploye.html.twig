@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    Welcome !
+{% endblock %}
+{% block body %}
+    <h2>{{ titre }}</h2>
+    <h3> Nom : {{ employe.getId() }}</h3>
+    <h3> Salaire : {{ employe.getSalaire() }}</h3>
+{% endblock %}
